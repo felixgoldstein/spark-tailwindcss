@@ -90,7 +90,7 @@ class SparkTailwindCssPreset extends Preset
         copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk.blade.php', resource_path('views/kiosk.blade.php'));
         copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/missing-team.blade.php', resource_path('views/missing-team.blade.php'));
         copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/settings.blade.php', resource_path('views/settings.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/teams.blade.php', resource_path('views/teams.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/terms.blade.php', resource_path('views/terms.blade.php'));
     }
 
     protected static function updatePagination()
