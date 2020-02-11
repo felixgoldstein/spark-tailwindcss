@@ -1,6 +1,6 @@
 <?php
 
-namespace Centraility\SparkTailwindCssPreset;
+namespace CentralityLabs\SparkTailwindCssPreset;
 
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
