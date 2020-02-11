@@ -14,9 +14,22 @@ require('laravel-mix-purgecss');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/css/app.scss', 'public/css')
-   .tailwind('./tailwind.config.js');
+mix
+  .js('resources/js/app.js', 'public/js')
+  .sass('resources/sass/app.scss', 'public/css')
+  .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert.min.js')
+  .webpackConfig({
+      resolve: {
+          modules: [
+              path.resolve(__dirname, 'vendor/laravel/spark-aurelius/resources/assets/js'),
+              'node_modules'
+          ],
+          alias: {
+              'vue$': mix.inProduction() ? 'vue/dist/vue.min' : 'vue/dist/vue.js'
+          }
+      }
+  })
+  .tailwind('./tailwind.config.js');
 
 if (mix.inProduction()) {
   mix
