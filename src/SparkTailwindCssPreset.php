@@ -54,7 +54,6 @@ class SparkTailwindCssPreset extends Preset
     {
         copy(__DIR__.'/spark-tailwindcss-stubs/tailwind.config.js', base_path('tailwind.config.js'));
         copy(__DIR__.'/spark-tailwindcss-stubs/webpack.mix.js', base_path('webpack.mix.js'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/js/bootstrap.js', resource_path('js/bootstrap.js'));
     }
 
     protected static function updateViews()
