@@ -59,31 +59,31 @@ class SparkTailwindCssPreset extends Preset
 
     protected static function updateViews()
     {
-        if ((new Filesystem)->idDirectory(resource_path('views/auth')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/auth')) {
           (new Filesystem)->deleteDirectory(resource_path('views/auth'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/auth', resource_path('views/auth'));
         }
-        if ((new Filesystem)->idDirectory(resource_path('views/kiosk')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/kiosk')) {
           (new Filesystem)->deleteDirectory(resource_path('views/kiosk'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk', resource_path('views/kiosk'));
         }
 
-        if ((new Filesystem)->idDirectory(resource_path('views/nav')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/nav')) {
           (new Filesystem)->deleteDirectory(resource_path('views/nav'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/nav', resource_path('views/nav'));
         }
 
-        if ((new Filesystem)->idDirectory(resource_path('views/shared')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/shared')) {
           (new Filesystem)->deleteDirectory(resource_path('views/shared'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/shared', resource_path('views/shared'));
         }
 
-        if ((new Filesystem)->idDirectory(resource_path('views/modals')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/modals')) {
           (new Filesystem)->deleteDirectory(resource_path('views/modals'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/modals', resource_path('views/modals'));
         }
 
-        if ((new Filesystem)->idDirectory(resource_path('views/layouts')) {
+        if ((new Filesystem)->isDirectory(resource_path('views/layouts')) {
           (new Filesystem)->deleteDirectory(resource_path('views/layputs'));
           (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/layouts', resource_path('views/layouts'));
         }
