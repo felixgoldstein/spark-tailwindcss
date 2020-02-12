@@ -60,37 +60,37 @@ class SparkTailwindCssPreset extends Preset
     {
         if ((new Filesystem)->isDirectory(resource_path('views/auth'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/auth'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/auth', resource_path('views/auth'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/auth', resource_path('views/vendor/spark/auth'));
         }
         if ((new Filesystem)->isDirectory(resource_path('views/kiosk'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/kiosk'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk', resource_path('views/kiosk'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk', resource_path('views/vendor/spark/kiosk'));
         }
 
         if ((new Filesystem)->isDirectory(resource_path('views/nav'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/nav'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/nav', resource_path('views/nav'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/nav', resource_path('views/vendor/spark/nav'));
         }
 
         if ((new Filesystem)->isDirectory(resource_path('views/shared'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/shared'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/shared', resource_path('views/shared'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/shared', resource_path('views/vendor/spark/shared'));
         }
 
         if ((new Filesystem)->isDirectory(resource_path('views/modals'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/modals'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/modals', resource_path('views/modals'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/modals', resource_path('views/vendor/spark/modals'));
         }
 
         if ((new Filesystem)->isDirectory(resource_path('views/layouts'))) {
           (new Filesystem)->deleteDirectory(resource_path('views/layputs'));
-          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/layouts', resource_path('views/layouts'));
+          (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/layouts', resource_path('views/vendor/spark/layouts'));
         }
 
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk.blade.php', resource_path('views/kiosk.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/missing-team.blade.php', resource_path('views/missing-team.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/settings.blade.php', resource_path('views/settings.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/terms.blade.php', resource_path('views/terms.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk.blade.php', resource_path('views/vendor/spark/kiosk.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/missing-team.blade.php', resource_path('views/vendor/sparkmissing-team.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/settings.blade.php', resource_path('views/vendor/sparksettings.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/terms.blade.php', resource_path('views/vendor/sparkterms.blade.php'));
     }
 
     protected static function updatePagination()
