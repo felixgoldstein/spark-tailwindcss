@@ -24,7 +24,7 @@ class SparkTailwindCssPreset extends Preset
         return array_merge([
             'laravel-mix' => '^4.0.14',
             'laravel-mix-purgecss' => '^4.1',
-            'laravel-mix-tailwind' => '^0.1.0',
+            'postcss-import' => '^12.0.1',
             'tailwindcss' => '^1.0',
         ], Arr::except($packages, [
             'bootstrap',
@@ -47,7 +47,7 @@ class SparkTailwindCssPreset extends Preset
             }
         });
 
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/app.scss', resource_path('css/app.scss'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/app.css', resource_path('css/app.css'));
     }
 
     protected static function updateBootstrapping()

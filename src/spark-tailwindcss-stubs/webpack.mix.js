@@ -16,6 +16,9 @@ require('laravel-mix-purgecss');
 
 mix
   .sass('resources/css/app.scss', 'public/css')
+  .postCss('resources/css/tailwind.css', 'public/css/tailwind.css', [
+    require('postcss-import'),
+    require('tailwindcss')])
   .js('resources/js/app.js', 'public/js')
   .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert.min.js')
   .webpackConfig({
@@ -28,8 +31,7 @@ mix
               'vue$': mix.inProduction() ? 'vue/dist/vue.min' : 'vue/dist/vue.js'
           }
       }
-  })
-  .tailwind('./tailwind.config.js');
+  });
 
 if (mix.inProduction()) {
   mix
