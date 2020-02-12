@@ -70,9 +70,9 @@ class SparkTailwindCssPreset extends Preset
         (new Filesystem)->copyDirectory(__DIR__.'/spark-tailwindcss-stubs/resources/views/layouts', resource_path('views/vendor/spark/layouts'));
 
         copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/kiosk.blade.php', resource_path('views/vendor/spark/kiosk.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/missing-team.blade.php', resource_path('views/vendor/sparkmissing-team.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/settings.blade.php', resource_path('views/vendor/sparksettings.blade.php'));
-        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/terms.blade.php', resource_path('views/vendor/sparkterms.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/missing-team.blade.php', resource_path('views/vendor/spark/missing-team.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/settings.blade.php', resource_path('views/vendor/spark/settings.blade.php'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/views/terms.blade.php', resource_path('views/vendor/spark/terms.blade.php'));
     }
 
     protected static function updatePagination()
