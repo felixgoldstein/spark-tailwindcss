@@ -9,13 +9,13 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header text-center">
-                        <div class="relative inline-flex align-middle">
-                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-grey-lightest-lightest bg-grey-lightest hover:bg-grey-lightest-light" :class="{'active': showingNotifications}" @click="showNotifications" style="width: 50%;">
+                        <div class="btn-group">
+                            <button class="btn btn-light" :class="{'active': showingNotifications}" @click="showNotifications" style="width: 50%;">
                                 {{__('Notifications')}}
                             </button>
 
-                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-grey-lightest-lightest bg-grey-lightest hover:bg-grey-lightest-light" :class="{'active': showingAnnouncements}" @click="showAnnouncements" style="width: 50%;">
-                                {{__('Announcements')}} <i class="fa fa-circle text-red" v-if="hasUnreadAnnouncements"></i>
+                            <button class="btn btn-light" :class="{'active': showingAnnouncements}" @click="showAnnouncements" style="width: 50%;">
+                                {{__('Announcements')}} <i class="fa fa-circle text-danger" v-if="hasUnreadAnnouncements"></i>
                             </button>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="notification-container" v-if=" ! loadingNotifications && activeNotifications.length == 0">
-                            <div class="relative px-3 py-3 mb-4 border rounded text-yellow-darker border-yellow-dark bg-yellow-lighter">
+                            <div class="alert alert-warning">
                                 {{__('We don\'t have anything to show you right now! But when we do, we\'ll be sure to let you know. Talk to you soon!')}}
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                                     <div class="notification-body" v-html="notification.parsed_body"></div>
 
                                     <!-- Notification Action -->
-                                    <a :href="notification.action_url" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light" v-if="notification.action_text">
+                                    <a :href="notification.action_url" class="btn btn-primary" v-if="notification.action_text">
                                         @{{ notification.action_text }}
                                     </a>
 
@@ -97,7 +97,7 @@
                                     <div class="notification-body" v-html="announcement.parsed_body"></div>
 
                                     <!-- Announcement Action -->
-                                    <a :href="announcement.action_url" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light" v-if="announcement.action_text">
+                                    <a :href="announcement.action_url" class="btn btn-primary" v-if="announcement.action_text">
                                         @{{ announcement.action_text }}
                                     </a>
 
@@ -108,7 +108,7 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" data-dismiss="modal">{{__('absolute pin-t pin-b pin-r px-4 py-3')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('Close')}}</button>
                     </div>
                 </div>
             </div>

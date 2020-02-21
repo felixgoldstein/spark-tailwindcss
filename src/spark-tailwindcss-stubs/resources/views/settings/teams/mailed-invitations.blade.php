@@ -1,10 +1,10 @@
 <spark-mailed-invitations :invitations="invitations" inline-template>
     <div>
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default" v-if="invitations.length > 0">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Mailed Invitations')}}</div>
+        <div class="card card-default" v-if="invitations.length > 0">
+            <div class="card-header">{{__('Mailed Invitations')}}</div>
 
-            <div class="block w-full overflow-auto scrolling-touch">
-                <table class="w-full max-w-full mb-4 bg-transparent table-valign-middle mb-0">
+            <div class="bootstrap-table-responsive">
+                <table class="bootstrap-table table-valign-middle mb-0">
                     <thead>
                         <tr>
                             <th>{{__('E-Mail Address')}}</th>

@@ -1,6 +1,6 @@
-<nav class="relative flex flex-wrap items-center content-between py-2 px-4 navbar-light  navbar-spark">
-    <div class="container mx-auto">
-        <a class="inline-block pt-1 pb-1 mr-4 text-lg whitespace-no-wrap" href="#">
+<nav class="navbar navbar-light navbar-expand-md navbar-spark">
+    <div class="container">
+        <a class="navbar-brand" href="#">
             <svg class="h-37 w-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 43" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <path id="a" d="M22 2.5c4-3.8 6.7-2.4 6 3.2l-1.5 10h4.2c5.5 0 6.7 3.2 2.6 7L14 40.7c-4 3.7-6.7 2.3-6-3.3l1.5-10H5.3c-5.5 0-6.7-3-2.6-7L22 2.4z"></path>
@@ -26,17 +26,17 @@
                 </g>
             </svg>
         </a>
-        <button class="py-1 px-2 text-md leading-normal bg-transparent border border-transparent rounded" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                 aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div id="navbarSupportedContent" class="collapse flex-grow items-center">
-            <ul class="flex flex-wrap list-reset pl-0 mb-0 ml-auto">
-                <li class="">
-                    <a class="inline-block py-2 px-4 no-underline" href="/login">{{__('Login')}}</a>
+        <div id="navbarSupportedContent" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">{{__('Login')}}</a>
                 </li>
-                <li class="">
-                    <a class="inline-block py-2 px-4 no-underline" href="/register">{{__('Register')}}</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">{{__('Register')}}</a>
                 </li>
             </ul>
         </div>

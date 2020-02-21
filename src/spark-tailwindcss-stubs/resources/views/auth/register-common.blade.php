@@ -1,41 +1,41 @@
-<div class="flex flex-wrap justify-center">
-    <div class="lg:w-2/3 pr-4 pl-4">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
         <!-- Coupon -->
-        <div class="relative px-3 py-3 mb-4 border rounded text-green-darker border-green-dark bg-green-lighter" v-if="coupon">
+        <div class="alert alert-success" v-if="coupon">
             <?php echo __('The coupon :value discount will be applied to your subscription!', ['value' => '{{ discount }}']); ?>
         </div>
 
         <!-- Invalid Coupon -->
-        <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter" v-if="invalidCoupon">
+        <div class="alert alert-danger" v-if="invalidCoupon">
             {{__('Whoops! This coupon code is invalid.')}}
         </div>
 
         <!-- Invitation -->
-        <div class="relative px-3 py-3 mb-4 border rounded text-green-darker border-green-dark bg-green-lighter" v-if="invitation">
+        <div class="alert alert-success" v-if="invitation">
             <?php echo __('teams.we_found_invitation_to_team', ['teamName' => '{{ invitation.team.name }}']); ?>
         </div>
 
         <!-- Invalid Invitation -->
-        <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter" v-if="invalidInvitation">
+        <div class="alert alert-danger" v-if="invalidInvitation">
             {{__('Whoops! This invitation code is invalid.')}}
         </div>
     </div>
 </div>
 
 <!-- Plan Selection -->
-<div class="flex flex-wrap justify-center" v-if="paidPlans.length > 0 && !registerForm.invitation">
-    <div class="lg:w-2/3 pr-4 pl-4">
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
+<div class="row justify-content-center" v-if="paidPlans.length > 0 && !registerForm.invitation">
+    <div class="col-lg-8">
+        <div class="card card-default">
+            <div class="card-header">
                 <div class="float-left">
                     {{__('Subscription')}}
                 </div>
 
                 <!-- Interval Selector Button Group -->
                 <div class="float-right">
-                    <div class="relative inline-flex align-middle py-1 px-2 text-sm leading-tight" v-if="hasMonthlyAndYearlyPlans" style="padding-top: 2px;">
+                    <div class="btn-group btn-group-sm" v-if="hasMonthlyAndYearlyPlans" style="padding-top: 2px;">
                         <!-- Monthly Plans -->
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-grey-lightest-lightest bg-grey-lightest hover:bg-grey-lightest-light"
+                        <button type="button" class="btn btn-light"
                                 @click="showMonthlyPlans"
                                 :class="{'active': showingMonthlyPlans}">
 
@@ -43,7 +43,7 @@
                         </button>
 
                         <!-- Yearly Plans -->
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-grey-lightest-lightest bg-grey-lightest hover:bg-grey-lightest-light"
+                        <button type="button" class="btn btn-light"
                                 @click="showYearlyPlans"
                                 :class="{'active': showingYearlyPlans}">
 
@@ -55,9 +55,9 @@
                 <div class="clearfix"></div>
             </div>
 
-            <div class="block w-full overflow-auto scrolling-touch">
+            <div class="bootstrap-table-responsive">
                 <!-- Plan Error Message - In General Will Never Be Shown -->
-                <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter m-4" v-if="registerForm.errors.has('plan')">
+                <div class="alert alert-danger m-4" v-if="registerForm.errors.has('plan')">
                     @{{ registerForm.errors.get('plan') }}
                 </div>
 
@@ -68,13 +68,13 @@
                     </p>
                 @endif
 
-                <table class="w-full max-w-full mb-4 bg-transparent block w-full overflow-auto scrolling-touch table-valign-middle mb-0 ">
+                <table class="bootstrap-table bootstrap-table-responsive-sm table-valign-middle mb-0 ">
                     <thead></thead>
                     <tbody>
                         <tr v-for="plan in plansForActiveInterval">
                             <!-- Plan Name -->
                             <td>
-                                <div class="flex align-center">
+                                <div class="d-flex align-items-center">
                                     <i class="radio-select mr-2" @click="selectPlan(plan)"
                                     :class="{'radio-select-selected': isSelected(plan)}"></i>
                                     @{{ plan.name }}
@@ -83,7 +83,7 @@
 
                             <!-- Plan Features Button -->
                             <td>
-                                <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" @click="showPlanDetails(plan)">
+                                <button class="btn btn-default" @click="showPlanDetails(plan)">
                                     <i class="fa fa-btn fa-star-o"></i> {{__('Features')}}
                                 </button>
                             </td>
@@ -119,10 +119,10 @@
 </div>
 
 <!-- Basic Profile -->
-<div class="flex flex-wrap justify-center">
-    <div class="lg:w-2/3 pr-4 pl-4">
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card card-default">
+            <div class="card-header">
                 <span v-if="paidPlans.length > 0">
                     {{__('Profile')}}
                 </span>
@@ -132,14 +132,14 @@
                 </span>
             </div>
 
-            <div class="flex-auto p-6">
+            <div class="card-body">
                 <!-- Generic Error Message -->
-                <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter" v-if="registerForm.errors.has('form')">
+                <div class="alert alert-danger" v-if="registerForm.errors.has('form')">
                     @{{ registerForm.errors.get('form') }}
                 </div>
 
                 <!-- Invitation Code Error -->
-                <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter" v-if="registerForm.errors.has('invitation')">
+                <div class="alert alert-danger" v-if="registerForm.errors.has('invitation')">
                     @{{ registerForm.errors.get('invitation') }}
                 </div>
 

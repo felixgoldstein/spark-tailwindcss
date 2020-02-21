@@ -1,10 +1,10 @@
 <spark-kiosk-profile :user="user" :plans="plans" inline-template>
     <div>
         <!-- Loading Indicator -->
-        <div class="flex flex-wrap" v-if="loading">
-            <div class="md:w-full pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="flex-auto p-6">
+        <div class="row" v-if="loading">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-body">
                         <i class="fa fa-btn fa-spinner fa-spin"></i> {{__('Loading')}}
                     </div>
                 </div>
@@ -13,24 +13,24 @@
 
         <!-- User Profile -->
         <div v-if=" ! loading && profile">
-            <div class="flex flex-wrap">
-                <div class="md:w-full pr-4 pl-4">
-                    <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                        <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-default">
+                        <div class="card-header">
                             <div>
                                 <i class="fa fa-btn fa-times" style="cursor: pointer;" @click="showSearch"></i>
                                 @{{ profile.name }}
                             </div>
                         </div>
 
-                        <div class="flex-auto p-6">
-                            <div class="flex flex-wrap">
+                        <div class="card-body">
+                            <div class="row">
                                 <!-- Profile Photo -->
-                                <div class="md:w-1/4 pr-4 pl-4 text-center">
+                                <div class="col-md-3 text-center">
                                     <img :src="profile.photo_url" class="spark-profile-photo-xl" alt="{{__('Profile Photo')}}" />
                                 </div>
 
-                                <div class="md:w-3/4 pr-4 pl-4">
+                                <div class="col-md-9">
                                     <!-- Email Address -->
                                     <p>
                                         <strong>{{__('Email Address')}}:</strong> <a :href="'mailto:'+profile.email">@{{ profile.email }}</a>
@@ -64,12 +64,12 @@
                             </div>
                         </div>
 
-                        <div class="py-3 px-6 bg-grey-lighter border-t-1 border-grey-light card-flush text-right">
-                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light py-1 px-2 text-sm leading-tight" v-if="spark.usesStripe && profile.stripe_id" @click="addDiscount(profile)">
+                        <div class="card-footer card-flush text-right">
+                            <button class="btn btn-primary btn-sm" v-if="spark.usesStripe && profile.stripe_id" @click="addDiscount(profile)">
                                 {{__('Apply Discount')}}
                             </button>
 
-                            <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default py-1 px-2 text-sm leading-tight" @click="impersonate(profile)" :opacity-75="user.id === profile.id">
+                            <button class="btn btn-default btn-sm" @click="impersonate(profile)" :disabled="user.id === profile.id">
                                 {{__('Impersonate')}}
                             </button>
                         </div>
@@ -78,15 +78,15 @@
             </div>
 
             <!-- Teams -->
-            <div class="flex flex-wrap" v-if="spark.usesTeams && profile.owned_teams.length > 0">
-                <div class="md:w-full pr-4 pl-4">
-                    <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                        <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
+            <div class="row" v-if="spark.usesTeams && profile.owned_teams.length > 0">
+                <div class="col-md-12">
+                    <div class="card card-default">
+                        <div class="card-header">
                             {{__('teams.teams')}}
                         </div>
 
-                        <div class="block w-full overflow-auto scrolling-touch">
-                            <table class="w-full max-w-full mb-4 bg-transparent table-valign-middle mb-0">
+                        <div class="bootstrap-table-responsive">
+                            <table class="bootstrap-table table-valign-middle mb-0">
                                 <thead>
                                     <tr>
                                         <th></th>

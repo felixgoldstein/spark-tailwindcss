@@ -1,7 +1,7 @@
 <!-- Left Side Of Navbar -->
 
 <!--
-<li class="">
-    <a class="inline-block py-2 px-4 no-underline" href="#">Your Link</a>
+<li class="nav-item">
+    <a class="nav-link" href="#">Your Link</a>
 </li>
 -->

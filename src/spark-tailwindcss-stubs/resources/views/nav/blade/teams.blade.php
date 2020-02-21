@@ -1,7 +1,7 @@
 <li class="divider"></li>
 
 <!-- Teams -->
-<li class="block py-2 px-6 mb-0 text-sm text-greay-dark whitespace-no-wrap">{{ __('teams.teams') }}</li>
+<li class="dropdown-header">{{ __('teams.teams') }}</li>
 
 <!-- Create Team -->
 @if (Spark::createsAdditionalTeams())
@@ -18,7 +18,7 @@
         <li>
             <a href="/settings/{{ Spark::teamsPrefix() }}/{{ $team->id }}/switch">
                 @if (Auth::user()->current_team_id === $team->id)
-                    <i class="fa fa-fw text-left fa-btn fa-check text-green"></i> {{ $team->name }}
+                    <i class="fa fa-fw text-left fa-btn fa-check text-success"></i> {{ $team->name }}
                 @else
                     <img src="{{ $team->photo_url }}" class="spark-profile-photo-xs" alt="{{__('Team Photo')}}" /><i class="fa fa-btn"></i> {{ $team->name }}
                 @endif

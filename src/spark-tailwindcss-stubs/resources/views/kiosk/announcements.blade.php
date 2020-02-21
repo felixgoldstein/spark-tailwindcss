@@ -1,58 +1,58 @@
 <spark-kiosk-announcements inline-template>
     <div>
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Create Announcement')}}</div>
+        <div class="card card-default">
+            <div class="card-header">{{__('Create Announcement')}}</div>
 
-            <div class="flex-auto p-6">
-                <div class="relative px-3 py-3 mb-4 border rounded text-teal-darker border-teal-dark bg-teal-lighter">
+            <div class="card-body">
+                <div class="alert alert-info">
                     {{__('Announcements you create here will be sent to the "Product Announcements" section of the notifications modal window, informing your users about new features and improvements to your application.')}}
                 </div>
 
                 <form role="form">
                     <!-- Announcement -->
-                    <div class="mb-4 flex flex-wrap">
-                        <label for="announcement" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Announcement')}}</label>
+                    <div class="form-group row">
+                        <label for="announcement" class="col-md-4 col-form-label text-md-right">{{__('Announcement')}}</label>
 
-                        <div class="md:w-1/2 pr-4 pl-4">
-                            <textarea class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="announcement" id="announcement" rows="7" v-model="createForm.body" style="font-family: monospace;" :class="{'bg-red-dark': createForm.errors.has('body')}">
+                        <div class="col-md-6">
+                            <textarea class="form-control" name="announcement" id="announcement" rows="7" v-model="createForm.body" style="font-family: monospace;" :class="{'is-invalid': createForm.errors.has('body')}">
                             </textarea>
 
-                            <span class="hidden mt-1 text-sm text-red" v-show="createForm.errors.has('body')">
+                            <span class="invalid-feedback" v-show="createForm.errors.has('body')">
                                 @{{ createForm.errors.get('body') }}
                             </span>
                         </div>
                     </div>
 
                     <!-- Action Text -->
-                    <div class="mb-4 flex flex-wrap">
-                        <label for="action_text" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Action Button Text')}}</label>
+                    <div class="form-group row">
+                        <label for="action_text" class="col-md-4 col-form-label text-md-right">{{__('Action Button Text')}}</label>
 
-                        <div class="md:w-1/2 pr-4 pl-4">
-                            <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="action_text" id="action_text" v-model="createForm.action_text" :class="{'bg-red-dark': createForm.errors.has('action_text')}">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="action_text" id="action_text" v-model="createForm.action_text" :class="{'is-invalid': createForm.errors.has('action_text')}">
 
-                            <span class="hidden mt-1 text-sm text-red" v-show="createForm.errors.has('action_text')">
+                            <span class="invalid-feedback" v-show="createForm.errors.has('action_text')">
                                 @{{ createForm.errors.get('action_text') }}
                             </span>
                         </div>
                     </div>
 
                     <!-- Action URL -->
-                    <div class="mb-4 flex flex-wrap">
-                        <label for="action_url" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Action Button URL')}}</label>
+                    <div class="form-group row">
+                        <label for="action_url" class="col-md-4 col-form-label text-md-right">{{__('Action Button URL')}}</label>
 
-                        <div class="md:w-1/2 pr-4 pl-4">
-                            <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="action_url" id="action_url" v-model="createForm.action_url" :class="{'bg-red-dark': createForm.errors.has('action_url')}">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" name="action_url" id="action_url" v-model="createForm.action_url" :class="{'is-invalid': createForm.errors.has('action_url')}">
 
-                            <span class="hidden mt-1 text-sm text-red" v-show="createForm.errors.has('action_url')">
+                            <span class="invalid-feedback" v-show="createForm.errors.has('action_url')">
                                 @{{ createForm.errors.get('action_url') }}
                             </span>
                         </div>
                     </div>
 
                     <!-- Create Button -->
-                    <div class="mb-4 flex flex-wrap">
-                        <div class="md:mx-1/3 md:w-1/2 pr-4 pl-4">
-                            <button type="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light"
+                    <div class="form-group row">
+                        <div class="offset-md-4 col-md-6">
+                            <button type="submit" class="btn btn-primary"
                                     @click.prevent="create"
                                     :disabled="createForm.busy">
 
@@ -65,11 +65,11 @@
         </div>
 
         <!-- Recent Announcements List -->
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default" v-if="announcements.length > 0">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Recent Announcements')}}</div>
+        <div class="card card-default" v-if="announcements.length > 0">
+            <div class="card-header">{{__('Recent Announcements')}}</div>
 
-            <div class="block w-full overflow-auto scrolling-touch">
-                <table class="w-full max-w-full mb-4 bg-transparent table-valign-middle mb-0">
+            <div class="bootstrap-table-responsive">
+                <table class="bootstrap-table table-valign-middle mb-0">
                     <thead>
                         <tr>
                             <th class="th-fit"></th>
@@ -136,40 +136,40 @@
                         <!-- Update Announcement -->
                         <form role="form">
                             <!-- Announcement -->
-                            <div class="mb-4 flex flex-wrap">
-                                <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Announcement')}}</label>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Announcement')}}</label>
 
-                                <div class="md:w-1/2 pr-4 pl-4">
-                                    <textarea class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" rows="7" v-model="updateForm.body" style="font-family: monospace;" :class="{'bg-red-dark': updateForm.errors.has('body')}">
+                                <div class="col-md-6">
+                                    <textarea class="form-control" rows="7" v-model="updateForm.body" style="font-family: monospace;" :class="{'is-invalid': updateForm.errors.has('body')}">
                                     </textarea>
 
-                                    <span class="hidden mt-1 text-sm text-red" v-show="updateForm.errors.has('body')">
+                                    <span class="invalid-feedback" v-show="updateForm.errors.has('body')">
                                         @{{ updateForm.errors.get('body') }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Action Text -->
-                            <div class="mb-4 flex flex-wrap">
-                                <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Action Button Text')}}</label>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Action Button Text')}}</label>
 
-                                <div class="md:w-1/2 pr-4 pl-4">
-                                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="action_text" v-model="updateForm.action_text" :class="{'bg-red-dark': updateForm.errors.has('action_text')}">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="action_text" v-model="updateForm.action_text" :class="{'is-invalid': updateForm.errors.has('action_text')}">
 
-                                    <span class="hidden mt-1 text-sm text-red" v-show="updateForm.errors.has('action_text')">
+                                    <span class="invalid-feedback" v-show="updateForm.errors.has('action_text')">
                                         @{{ updateForm.errors.get('action_text') }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Action URL -->
-                            <div class="mb-4 flex flex-wrap">
-                                <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Action Button URL')}}</label>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Action Button URL')}}</label>
 
-                                <div class="md:w-1/2 pr-4 pl-4">
-                                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="action_url" v-model="updateForm.action_url" :class="{'bg-red-dark': updateForm.errors.has('action_url')}">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="action_url" v-model="updateForm.action_url" :class="{'is-invalid': updateForm.errors.has('action_url')}">
 
-                                    <span class="hidden mt-1 text-sm text-red" v-show="updateForm.errors.has('action_url')">
+                                    <span class="invalid-feedback" v-show="updateForm.errors.has('action_url')">
                                         @{{ updateForm.errors.get('action_url') }}
                                     </span>
                                 </div>
@@ -179,9 +179,9 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" data-dismiss="modal">{{__('absolute pin-t pin-b pin-r px-4 py-3')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('Close')}}</button>
 
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light" @click="update" :opacity-75="updateForm.busy">
+                        <button type="button" class="btn btn-primary" @click="update" :disabled="updateForm.busy">
                             {{__('Update')}}
                         </button>
                     </div>
@@ -205,9 +205,9 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
 
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-red-lightest bg-red hover:bg-red-light" @click="deleteAnnouncement" :opacity-75="deleteForm.busy">
+                        <button type="button" class="btn btn-danger" @click="deleteAnnouncement" :disabled="deleteForm.busy">
                             {{__('Yes, Delete')}}
                         </button>
                     </div>

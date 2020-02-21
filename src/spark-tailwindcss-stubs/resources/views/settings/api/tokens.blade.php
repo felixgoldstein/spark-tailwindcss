@@ -1,11 +1,11 @@
 <spark-tokens :tokens="tokens" :available-abilities="availableAbilities" inline-template>
     <div>
         <div>
-            <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default" v-if="tokens.length > 0">
-                <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('API Tokens')}}</div>
+            <div class="card card-default" v-if="tokens.length > 0">
+                <div class="card-header">{{__('API Tokens')}}</div>
 
-                <div class="block w-full overflow-auto scrolling-touch">
-                    <table class="w-full max-w-full mb-4 bg-transparent table-valign-middle mb-0">
+                <div class="bootstrap-table-responsive">
+                    <table class="bootstrap-table table-valign-middle mb-0">
                         <thead>
                             <tr>
                                 <th>{{__('Name')}}</th>
@@ -47,11 +47,11 @@
                             <!-- Edit Button -->
                             <td class="td-fit">
                                 <div class="text-right ">
-                                    <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-dark border-blue bg-white hover:bg-blue-light hover:text-blue-darker" @click="editToken(token)">
+                                    <button class="btn btn-outline-primary" @click="editToken(token)">
                                         <i class="fa fa-cog"></i>
                                     </button>
 
-                                    <button class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-red-dark border-red bg-white hover:bg-red-light hover:text-red-darker" @click="approveTokenDelete(token)">
+                                    <button class="btn btn-outline-danger" @click="approveTokenDelete(token)">
                                         <i class="fa fa-remove"></i>
                                     </button>
                                 </div>
@@ -77,23 +77,23 @@
                         <!-- Update Token Form -->
                         <form role="form">
                             <!-- Token Name -->
-                            <div class="mb-4 flex flex-wrap">
-                                <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Token Name')}}</label>
+                            <div class="form-group row">
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Token Name')}}</label>
 
-                                <div class="md:w-1/2 pr-4 pl-4">
-                                    <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="name" v-model="updateTokenForm.name" :class="{'bg-red-dark': updateTokenForm.errors.has('name')}">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" name="name" v-model="updateTokenForm.name" :class="{'is-invalid': updateTokenForm.errors.has('name')}">
 
-                                    <span class="hidden mt-1 text-sm text-red" v-show="updateTokenForm.errors.has('name')">
+                                    <span class="invalid-feedback" v-show="updateTokenForm.errors.has('name')">
                                         @{{ updateTokenForm.errors.get('name') }}
                                     </span>
                                 </div>
                             </div>
 
                             <!-- Token Abilities -->
-                            <div class="mb-4 flex flex-wrap" v-if="availableAbilities.length > 0">
-                                <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Token Can')}}</label>
+                            <div class="form-group row" v-if="availableAbilities.length > 0">
+                                <label class="col-md-4 col-form-label text-md-right">{{__('Token Can')}}</label>
 
-                                <div class="md:w-1/2 pr-4 pl-4">
+                                <div class="col-md-6">
                                     <div v-for="ability in availableAbilities">
                                         <div class="checkbox">
                                             <label>
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
 
-                                    <span class="hidden mt-1 text-sm text-red" v-show="updateTokenForm.errors.has('abilities')">
+                                    <span class="invalid-feedback" v-show="updateTokenForm.errors.has('abilities')">
                                         @{{ updateTokenForm.errors.get('abilities') }}
                                     </span>
                                 </div>
@@ -116,9 +116,9 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" data-dismiss="modal">{{__('absolute pin-t pin-b pin-r px-4 py-3')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('Close')}}</button>
 
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light" @click="updateToken" :opacity-75="updateTokenForm.busy">
+                        <button type="button" class="btn btn-primary" @click="updateToken" :disabled="updateTokenForm.busy">
                         {{__('Update')}}
                         </button>
                     </div>
@@ -142,9 +142,9 @@
 
                     <!-- Modal Actions -->
                     <div class="modal-footer">
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{__('No, Go Back')}}</button>
 
-                        <button type="button" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-red-lightest bg-red hover:bg-red-light" @click="deleteToken" :opacity-75="deleteTokenForm.busy">
+                        <button type="button" class="btn btn-danger" @click="deleteToken" :disabled="deleteTokenForm.busy">
                         {{__('Yes, Delete')}}
                         </button>
                     </div>

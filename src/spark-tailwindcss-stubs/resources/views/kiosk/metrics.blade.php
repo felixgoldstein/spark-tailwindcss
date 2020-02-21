@@ -2,11 +2,11 @@
     <!-- The Landsman™ -->
     <div>
 
-        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default mb-4">
-            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
-                <h2 class="mb-3 mb-0">{{__('Metrics')}}</h2>
+        <div class="card card-default mb-4">
+            <div class="card-header">
+                <h2 class="card-title mb-0">{{__('Metrics')}}</h2>
             </div>
-            <div class="flex-auto p-6">
+            <div class="card-body">
                 <div class="metrics">
                     <div class="metric">
                         <div class="mr-3">
@@ -72,12 +72,12 @@
         </div>
 
         <!-- Monthly Recurring Revenue Chart -->
-        <div class="flex flex-wrap" v-show="indicators.length > 0">
-            <div class="md:w-full pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Monthly Recurring Revenue')}}</div>
+        <div class="row" v-show="indicators.length > 0">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">{{__('Monthly Recurring Revenue')}}</div>
 
-                    <div class="flex-auto p-6">
+                    <div class="card-body">
                         <canvas id="monthlyRecurringRevenueChart" height="100"></canvas>
                     </div>
                 </div>
@@ -85,36 +85,36 @@
         </div>
 
         <!-- Yearly Recurring Revenue Chart -->
-        <div class="flex flex-wrap" v-show="indicators.length > 0">
-            <div class="md:w-full pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Yearly Recurring Revenue')}}</div>
+        <div class="row" v-show="indicators.length > 0">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">{{__('Yearly Recurring Revenue')}}</div>
 
-                    <div class="flex-auto p-6">
+                    <div class="card-body">
                         <canvas id="yearlyRecurringRevenueChart" height="100"></canvas>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex flex-wrap" v-show="indicators.length > 0">
+        <div class="row" v-show="indicators.length > 0">
             <!-- Daily Volume Chart -->
-            <div class="md:w-1/2 pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Daily Volume')}}</div>
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div class="card-header">{{__('Daily Volume')}}</div>
 
-                    <div class="flex-auto p-6">
+                    <div class="card-body">
                         <canvas id="dailyVolumeChart" height="100"></canvas>
                     </div>
                 </div>
             </div>
 
             <!-- Daily New Users Chart -->
-            <div class="md:w-1/2 pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('New Users')}}</div>
+            <div class="col-md-6">
+                <div class="card card-default">
+                    <div class="card-header">{{__('New Users')}}</div>
 
-                    <div class="flex-auto p-6">
+                    <div class="card-body">
                         <canvas id="newUsersChart" height="100"></canvas>
                     </div>
                 </div>
@@ -122,13 +122,13 @@
         </div>
 
         <!-- Subscribers Per Plan -->
-        <div class="flex flex-wrap" v-if="plans.length > 0">
-            <div class="md:w-full pr-4 pl-4">
-                <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                    <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Subscribers')}}</div>
+        <div class="row" v-if="plans.length > 0">
+            <div class="col-md-12">
+                <div class="card card-default">
+                    <div class="card-header">{{__('Subscribers')}}</div>
 
-                    <div class="block w-full overflow-auto scrolling-touch">
-                        <table class="w-full max-w-full mb-4 bg-transparent table-valign-middle mb-0">
+                    <div class="bootstrap-table-responsive">
+                        <table class="bootstrap-table table-valign-middle mb-0">
                             <thead>
                                 <tr>
                                     <th>{{__('Name')}}</th>

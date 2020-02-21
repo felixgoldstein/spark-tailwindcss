@@ -7,17 +7,17 @@
 
 @section('content')
 <spark-kiosk :user="user" inline-template>
-    <div class="spark-screen container mx-auto">
-        <div class="flex flex-wrap">
+    <div class="spark-screen container">
+        <div class="row">
             <!-- Tabs -->
-            <div class="md:w-1/4 pr-4 pl-4 spark-settings-tabs">
+            <div class="col-md-3 spark-settings-tabs">
                 <aside>
                     <h3 class="nav-heading ">
                         {{__('Kiosk')}}
                     </h3>
-                    <ul class="flex flex-wrap list-reset pl-0 mb-0 flex-column mb-4 ">
-                        <li class=" ">
-                            <a class="inline-block py-2 px-4 no-underline" href="#announcements" aria-controls="announcements" role="tab" data-toggle="tab">
+                    <ul class="nav flex-column mb-4 ">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#announcements" aria-controls="announcements" role="tab" data-toggle="tab">
                                 <svg class="icon-20 " viewBox="0 0 20 20 " xmlns="http://www.w3.org/2000/svg ">
                                     <path d="M10 20C4.4772 20 0 15.5228 0 10S4.4772 0 10 0s10 4.4772 10 10-4.4772 10-10 10zm0-17C8.343 3 7
               4.343 7 6v2c0 1.657 1.343 3 3 3s3-1.343 3-3V6c0-1.657-1.343-3-3-3zM3.3472 14.4444C4.7822 16.5884 7.2262 18 10
@@ -27,8 +27,8 @@
                             </a>
                         </li>
 
-                        <li class=" ">
-                            <a class="inline-block py-2 px-4 no-underline" href="#metrics" aria-controls="metrics" role="tab" data-toggle="tab">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#metrics" aria-controls="metrics" role="tab" data-toggle="tab">
                                 <svg class="icon-20 " viewBox="0 0 20 20 " xmlns="http://www.w3.org/2000/svg ">
                                     <path d="M6 8C4 8 2 6.2 2 4s2-4 4-4c2.3 0 4 1.8 4 4S8.4 8 6 8zm0 1c2.3 0 4.3.4 6.2 1l-1 6H9.8l-1 4H3l-.6-4H1l-1-6c2-.6
               4-1 6-1zm8.4.2c1.3 0 2.6.4 3.8 1l-1 5.8H16l-1 4h-4l.4-2h1.3l1.6-8.8zM12 0c2.3 0 4 1.8 4 4s-1.7 4-4 4c-.4 0-.8
@@ -38,8 +38,8 @@
                             </a>
                         </li>
 
-                        <li class=" ">
-                            <a class="inline-block py-2 px-4 no-underline" href="#users" aria-controls="users" role="tab" data-toggle="tab">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#users" aria-controls="users" role="tab" data-toggle="tab">
                                 <svg class="icon-20 " viewBox="0 0 20 20 " xmlns="http://www.w3.org/2000/svg ">
                                     <path d="M3 8V6c0-3.3 2.7-6 6-6s6 2.7 6 6v2h1c1 0 2 1 2 2v8c0 1-1 2-2 2H2c-1 0-2-1-2-2v-8c0-1 1-2 2-2h1zm5
               6.7V17h2v-2.3c.6-.3 1-1 1-1.7 0-1-1-2-2-2s-2 1-2 2c0 .7.4 1.4 1 1.7zM6 6v2h6V6c0-1.7-1.3-3-3-3S6 4.3 6 6z"></path>
@@ -52,7 +52,7 @@
             </div>
 
             <!-- Tab cards -->
-            <div class="md:w-3/4 pr-4 pl-4">
+            <div class="col-md-9">
                 <div class="tab-content">
                     <!-- Announcements -->
                     <div role="tabcard" class="tab-pane active" id="announcements">

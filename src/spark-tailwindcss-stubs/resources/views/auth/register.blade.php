@@ -7,40 +7,40 @@
 @section('content')
     <spark-register-stripe inline-template>
         <div>
-            <div class="spark-screen container mx-auto">
+            <div class="spark-screen container">
                 <!-- Common Register Form Contents -->
             @include('spark::auth.register-common')
 
             <!-- Billing Information -->
-                <div class="flex flex-wrap justify-center" v-if="selectedPlan && selectedPlan.price > 0">
-                    <div class="lg:w-2/3 pr-4 pl-4">
-                        <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light card-default">
-                            <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">{{__('Billing Information')}}</div>
+                <div class="row justify-content-center" v-if="selectedPlan && selectedPlan.price > 0">
+                    <div class="col-lg-8">
+                        <div class="card card-default">
+                            <div class="card-header">{{__('Billing Information')}}</div>
 
-                            <div class="flex-auto p-6">
+                            <div class="card-body">
                                 <!-- Generic 500 Level Error Message / Stripe Threw Exception -->
-                                <div class="relative px-3 py-3 mb-4 border rounded text-red-darker border-red-dark bg-red-lighter" v-if="registerForm.errors.has('form')">
+                                <div class="alert alert-danger" v-if="registerForm.errors.has('form')">
                                     {{__('We had trouble validating your card. It\'s possible your card provider is preventing us from charging the card. Please contact your card provider or customer support.')}}
                                 </div>
 
                                 <form role="form">
                                     <!-- Cardholder's Name -->
-                                    <div class="mb-4 flex flex-wrap">
-                                        <label for="name" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Cardholder\'s Name')}}</label>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Cardholder\'s Name')}}</label>
 
-                                        <div class="md:w-1/2 pr-4 pl-4">
-                                            <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="name" v-model="cardForm.name">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="name" v-model="cardForm.name">
                                         </div>
                                     </div>
 
                                     <!-- Card Details -->
-                                    <div class="mb-4 flex flex-wrap">
-                                        <label for="name" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light')}}</label>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{__('Card')}}</label>
 
-                                        <div class="md:w-1/2 pr-4 pl-4">
+                                        <div class="col-md-6">
                                             <div id="card-element"></div>
-                                            <input type="hidden" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" :class="{'bg-red-dark': cardForm.errors.has('relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light')}">
-                                            <span class="hidden mt-1 text-sm text-red" v-show="cardForm.errors.has('relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light')">
+                                            <input type="hidden" class="form-control" :class="{'is-invalid': cardForm.errors.has('card')}">
+                                            <span class="invalid-feedback" v-show="cardForm.errors.has('card')">
                                             @{{ cardForm.errors.get('card') }}
                                         </span>
                                         </div>
@@ -52,40 +52,41 @@
                                 @endif
 
                                 <!-- ZIP Code -->
-                                    <div class="mb-4 flex flex-wrap" v-if=" ! spark.collectsBillingAddress">
-                                        <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('ZIP / Postal Code')}}</label>
+                                    <div class="form-group row" v-if=" ! spark.collectsBillingAddress">
+                                        <label class="col-md-4 col-form-label text-md-right">{{__('ZIP / Postal Code')}}</label>
 
-                                        <div class="md:w-1/2 pr-4 pl-4">
-                                            <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="zip" v-model="registerForm.zip" :class="{'bg-red-dark': registerForm.errors.has('zip')}">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="zip" v-model="registerForm.zip" :class="{'is-invalid': registerForm.errors.has('zip')}">
 
-                                            <span class="hidden mt-1 text-sm text-red" v-show="registerForm.errors.has('zip')">
+                                            <span class="invalid-feedback" v-show="registerForm.errors.has('zip')">
                                             @{{ registerForm.errors.get('zip') }}
                                         </span>
                                         </div>
                                     </div>
 
                                     <!-- Coupon Code -->
-                                    <div class="mb-4 flex flex-wrap" v-if="query.coupon">
-                                        <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">{{__('Coupon Code')}}</label>
+                                    <div class="form-group row" v-if="query.coupon">
+                                        <label class="col-md-4 col-form-label text-md-right">{{__('Coupon Code')}}</label>
 
-                                        <div class="md:w-1/2 pr-4 pl-4">
-                                            <input type="text" class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-grey-darker border border-grey rounded" name="coupon" v-model="registerForm.coupon" :class="{'bg-red-dark': registerForm.errors.has('coupon')}">
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" name="coupon" v-model="registerForm.coupon" :class="{'is-invalid': registerForm.errors.has('coupon')}">
 
-                                            <span class="hidden mt-1 text-sm text-red" v-show="registerForm.errors.has('coupon')">
+                                            <span class="invalid-feedback" v-show="registerForm.errors.has('coupon')">
                                             @{{ registerForm.errors.get('coupon') }}
                                         </span>
                                         </div>
                                     </div>
 
                                     <!-- Terms And Conditions -->
-                                    <div class="mb-4 flex flex-wrap">
-                                        <div class="md:w-1/2 pr-4 pl-4 md:mx-1/3">
-                                            <div class="relative block mb-2">
-                                                <label class="text-grey-dark pl-6 mb-0">
-                                                    <input type="checkbox" class="absolute mt-1 -ml-6" v-model="registerForm.terms">
+                                    <div class="form-group row">
+                                        <div class="col-md-6 offset-md-4">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input type="checkbox" class="form-check-input" v-model="registerForm.terms">
                                                     {!! __('I Accept :linkOpen The Terms Of Service :linkClose', ['linkOpen' => '<a href="/terms" target="_blank">', 'linkClose' => '</a>']) !!}
                                                 </label>
-                                                <span class="hidden mt-1 text-sm text-red" v-show="registerForm.errors.has('terms')">
+                                                <input type="hidden" class="form-control" :class="{'is-invalid': registerForm.errors.has('terms')}">
+                                                <span class="invalid-feedback" v-show="registerForm.errors.has('terms')">
                                                 <strong>@{{ registerForm.errors.get('terms') }}</strong>
                                             </span>
                                             </div>
@@ -93,11 +94,11 @@
                                     </div>
 
                                     <!-- Tax / Price Information -->
-                                    <div class="mb-4 flex flex-wrap" v-if="spark.collectsEuropeanVat && countryCollectsVat && selectedPlan">
-                                        <label class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 mb-0 leading-normal text-md-right">&nbsp;</label>
+                                    <div class="form-group row" v-if="spark.collectsEuropeanVat && countryCollectsVat && selectedPlan">
+                                        <label class="col-md-4 col-form-label text-md-right">&nbsp;</label>
 
-                                        <div class="md:w-1/2 pr-4 pl-4">
-                                            <div class="relative px-3 py-3 mb-4 border rounded text-teal-darker border-teal-dark bg-teal-lighter" style="margin: 0;">
+                                        <div class="col-md-6">
+                                            <div class="alert alert-info" style="margin: 0;">
                                                 <strong>{{__('Tax')}}:</strong> @{{ taxAmount(selectedPlan) | currency }}
                                                 <br><br>
                                                 <strong>{{__('Total Price Including Tax')}}:</strong>
@@ -112,9 +113,9 @@
                                     </div>
 
                                     <!-- Register Button -->
-                                    <div class="mb-4 flex flex-wrap mb-0">
-                                        <div class="md:w-1/2 pr-4 pl-4 md:mx-1/3">
-                                            <button type="submit" class="inline-block align-middle text-center select-none border font-normal whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-blue-lightest bg-blue hover:bg-blue-light" @click.prevent="register" :opacity-75="registerForm.busy">
+                                    <div class="form-group row mb-0">
+                                        <div class="col-md-6 offset-md-4">
+                                            <button type="submit" class="btn btn-primary" @click.prevent="register" :disabled="registerForm.busy">
                                             <span v-if="registerForm.busy">
                                                 <i class="fa fa-btn fa-spinner fa-spin"></i> {{__('Registering')}}
                                             </span>
