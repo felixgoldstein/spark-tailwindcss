@@ -6,6 +6,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Container\Container;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Foundation\Console\Presets\Preset;
+use Laravel\Ui\Presets\Preset;
 
 class SparkTailwindCssPreset extends Preset
 {
