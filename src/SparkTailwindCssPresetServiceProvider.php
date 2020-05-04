@@ -5,12 +5,13 @@ namespace CentralityLabs\SparkTailwindCssPreset;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Foundation\Console\PresetCommand;
+use Laravel\Ui\UiCommand;
 
 class SparkTailwindCssPresetServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        PresetCommand::macro('spark-tailwindcss', function ($command) {
+        UiCommand::macro('spark-tailwindcss', function ($command) {
             SparkTailwindCssPreset::install();
 
             $command->info('Tailwind CSS scaffolding for Laravel Spark installed successfully.');
