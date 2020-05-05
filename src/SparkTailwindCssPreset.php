@@ -18,7 +18,7 @@ class SparkTailwindCssPreset extends Preset
         static::removeNodeModules();
     }
 
-    protected static function updatePackage(array $packages)
+    protected static function updatePackageArray(array $packages)
     {
         return array_merge([
             'laravel-mix' => '^4.0.14',
