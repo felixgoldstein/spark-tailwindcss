@@ -18,13 +18,13 @@ class SparkTailwindCssPreset extends Preset
         static::removeNodeModules();
     }
 
-    protected static function updatePackageArray(array $packages)
+    protected static function updatePackage(array $packages)
     {
         return array_merge([
             'laravel-mix' => '^4.0.14',
             'laravel-mix-purgecss' => '^4.1',
             'postcss-import' => '^12.0.1',
-            'tailwindcss' => '^1.0',
+            'tailwindcss' => '^1.4',
         ], Arr::except($packages, [
             'bootstrap',
             'bootstrap-sass',
