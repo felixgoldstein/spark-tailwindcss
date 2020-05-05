@@ -47,6 +47,10 @@ class SparkTailwindCssPreset extends Preset
         });
 
         copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/app.css', resource_path('css/app.css'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/bootstrap-custom.css', resource_path('css/bootstrap-custom.css'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/bootstrap4-shim.css', resource_path('css/bootstrap4-shim.css'));
+        copy(__DIR__.'/spark-tailwindcss-stubs/resources/css/tailwind.css', resource_path('css/tailwind.css'));
+        
     }
 
     protected static function updateBootstrapping()
