@@ -14,8 +14,9 @@ let path = require('path');
  |
  */
 
-mix
-    .sass('resources/sass/app.scss', 'public/css')
+mix.postCss('resources/css/tailwind.css', 'public/css/app.css', [
+    require('postcss-import'),
+    require('tailwindcss')])
     .js('resources/js/app.js', 'public/js')
     .copy('node_modules/sweetalert2/dist/sweetalert2.min.js', 'public/js/sweetalert.min.js')
     .webpackConfig({
@@ -32,15 +33,6 @@ mix
 
 
 if (mix.inProduction()) {
-    mix.version();
-}
-
-
-mix.postCss('resources/css/tailwind.css', 'public/css/app.css', [
-    require('postcss-import'),
-    require('tailwindcss'),
-]);
-
-if (mix.inProduction()) {
     mix.purgeCss();
+    mix.version();
 }
